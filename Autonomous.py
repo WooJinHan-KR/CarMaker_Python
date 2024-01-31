@@ -1,9 +1,8 @@
 import socket
 import time
-import sys, string, os, subprocess
+import os
 from pathlib import Path
 from CameraRSI import VDS
-import cv2
 
 CM_PATH = Path("C:/IPG/carmaker/win64-12.0.1/bin/CM.exe")
 CM_PROJ = Path("C:/CM_Projects/Python")
@@ -33,30 +32,16 @@ s.send(MESSAGE.encode('utf-8'))
 s_string_val = s.recv(BUFFER_SIZE)
 
 for _ in range(10):
-    print("Please wait for Sensor setting.", end=" ")
+    print("---Please wait for Sensor setting---\n")
     time.sleep(1)
-    for dot_count in range(1, _ + 2):
-        print(".", end="")
-        if vds.check_port():
-            break
-    else :
-        print()
     if vds.check_port():
+        print("----------Sensor Connected----------\n")
+        print("--Lane Keeping Assist System Start--\n")
         break
 
 # Connect
 vds.connect()    
-
-# Read Images
-while(True):
-    # Capture frame-by-frame
-    frame = vds.read()
-    frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
-    # Display the resulting frame
-    cv2.imshow('Frame', frame)
-    # Press Q on keyboard to  exit
-    if cv2.waitKey(25) & 0xFF == ord('q'):
-        break
+vds.load_img(s)
 
 MESSAGE = "StopSim\r"
 

@@ -1,10 +1,9 @@
-import sys
-import os
 import logging
 from types import *
 import time, socket
 import cv2
 import numpy as np
+from Lanedetection import LaneDetector
 
 class VDS:
     def __init__(self, ip="localhost", port=2210, log_level=logging.INFO):
@@ -36,9 +35,9 @@ class VDS:
 
         if not self.connected:
             self.logger.error("Connect first by calling .connect()")
-            return None
+            return
         
-        self.socket.setblocking(False)
+        #self.socket.setblocking(False)
 
         # Get Image header and fill data
         data = self.socket.recv(64)
@@ -65,16 +64,9 @@ class VDS:
                     lastdata = b''
                     size = 0
                     continue
-            except socket.error as e:
-                # Handle non-blocking socket error (no data available)
-                if e.errno == socket.errno.EWOULDBLOCK:
-                    continue
-                else:
-                    # Handle other socket errors
-                    self.logger.error(f"Socket error: {e}")
-                    return None
-                #pass
-
+            except :
+                pass
+            
             lastdata += data
             size = np.frombuffer(lastdata, dtype=np.uint8).size
             
@@ -87,3 +79,15 @@ class VDS:
             self.logger.error("rgb and gray are supported for now")
 
         return img
+
+
+    def load_img(self, s) :
+        MESSAGE = "DVARead DM.Lap.No\r"
+        while(True):
+            # Capture frame-by-frame
+            frame = self.read()
+            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+            cv2.imshow('frame', frame)
+
+            if cv2.waitKey(25) & 0xFF == ord('q'):
+                break
