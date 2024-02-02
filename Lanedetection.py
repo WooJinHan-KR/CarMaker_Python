@@ -1,6 +1,6 @@
 import sys, string, os, subprocess
 from pathlib import Path
-from CameraRSI import VDS
+#from CameraRSI import VDS
 import cv2
 import sys
 from types import *

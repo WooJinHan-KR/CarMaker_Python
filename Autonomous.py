@@ -41,7 +41,7 @@ for _ in range(10):
 
 # Connect
 vds.connect()    
-vds.load_img(s)
+vds.load_img()
 
 MESSAGE = "StopSim\r"
 
