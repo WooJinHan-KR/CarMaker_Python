@@ -1,7 +1,9 @@
-## CarMaker_Python
+## CarMaker use with Python API
 
-CarMaker에서 Python API를 이용해 할 수 있는 동작과 예시 모음
+---
+## CarMakerUI.py
 
+* cmapi, python api로 간단하게 CarMaker 실행하는 예제
 * Test 실행을 설정하고 매개변수화
 * 실행 중인 Simulation을 제어
 * 여러 Simulation을 실행해서 자동화 범위를 손쉽게 함
@@ -10,6 +12,8 @@ CarMaker에서 Python API를 이용해 할 수 있는 동작과 예시 모음
 ---
 ## Autonomous.py
 
+* Script Control, cmapi 사용
+* import CameraRSI.py, Lanedetection.py
 * CarMaker에서 CameraRSI 센서에서 나오는 Tcp 데이터를 읽어옴
 * 데이터를 읽어서 Opencv 라이브러리를 사용해 차선 인식 및 검출
 * CarMaker에 DVA Write하는 방식으로 작동해 Delay 발생하기 때문에 차선 인식만 실행
@@ -22,6 +26,7 @@ CarMaker에서 Python API를 이용해 할 수 있는 동작과 예시 모음
 * 위 파일 이름에서 Python3.6 ~ 3.10 버전을 지원함을 확인
 * 적절한 python ver 다운 후 환경변수에 설치 경로 추가
 * python API 검색경로 추가 - window 기준 shell 열어서
+
 ```
 $env:PYTHONPATH = "C:/IPG/carmaker/win64-버전명/Python/python버전;$env:PYTHONPATH"
 
