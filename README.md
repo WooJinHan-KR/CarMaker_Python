@@ -8,6 +8,13 @@ CarMaker에서 Python API를 이용해 할 수 있는 동작과 예시 모음
 * CarMaker Interface Toolbox 응용 프로그램 관리
 
 ---
+## Autonomous.py
+
+* CarMaker에서 CameraRSI 센서에서 나오는 Tcp 데이터를 읽어옴
+* 데이터를 읽어서 Opencv 라이브러리를 사용해 차선 인식 및 검출
+* CarMaker에 DVA Write하는 방식으로 작동해 Delay 발생하기 때문에 차선 인식만 실행
+
+---
 ## Setting
 
 * CarMaker 12ver 예시로 진행중이며 버전 별로 다른 세부 정보는 공식 문서 참조
@@ -30,7 +37,6 @@ set PYTHONPATH=C:/IPG/carmaker/win64-버전명/Python/python버전;%PYTHONPATH%
 $env:PYTHONPATH = "C:/IPG/carmaker/win64-12.0.1/Python/python3.8;$env:PYTHONPATH"
 
 ```
-
 ## Run
 
 * cmd 창 열고 C:\IPG\carmaker\win64-12.0.1\Examples\Python 들어가서 runtime_minimal_example.py 편집기로 실행
